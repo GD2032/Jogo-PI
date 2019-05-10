@@ -4,29 +4,30 @@ using UnityEngine;
 
 public class RadomObstaculos : MonoBehaviour
 {
-    public float tempocorrido = 0;
-    public float proximoSpawn;
-    public GameObject[] lixos;
-    public int sorteio;
+    private int sorteio;
+    private float tempoCorrido = 0;
+    private float proximoSpawn;
+    [SerializeField]
+    private GameObject[] lixos;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-
+            InvokeRepeating("SpawnObstaculos", 0, 1.5f);
     }
-
-    // Update is called once per frame
     void Update()
-    {sorteio = Random.Range(0,2);
-        if (Time.time >= tempocorrido)
+    {
+    }
+    void SpawnObstaculos()
+    {
+        sorteio = Random.Range(0, 2);
+        if(Time.time >= tempoCorrido)
         {
-            tempocorrido = Time.time + proximoSpawn;
-            Vector2 position = new Vector2(14, Random.Range(2, -4.89f));
+            tempoCorrido = Time.time + proximoSpawn;
+            Vector2 position = new Vector2(14, Random.Range(2, -6.89f));
             Instantiate(lixos[sorteio], position, Quaternion.identity);
-
         }
     }
+    
 
 
 } 
