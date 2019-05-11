@@ -2,26 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerBehaviour : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour
 {
     private int[] Vidas = new int[3] { 1, 1, 1 };
     private GameObject sacola;
     private GameObject aguaViva;
 
-    public float speed;
-    public static bool movimento;
-    public static float posicaoPersonagem;
+    private float speed;
+    private static bool movimento;
+    private bool playerAlive;
+    private static float posicaoPersonagem;
 
-    public float xmax = 9.43f;
-    public float ymax = 9.04f;
-    public float ymin;
-    public GameObject laser;
-    public GameObject boca;
+    private float xmax = 9.43f;
+    private float ymax = 9.04f;
+    private float ymin;
+    private GameObject laser;
+    private GameObject boca;
     private float movimentoEixoX;
     private float movimentoEixoY;
 
     void Start()
     {
+
+        speed = 8;
+        playerAlive = true;
         movimento = true;
         sacola = GameObject.FindWithTag("Sacola");
         aguaViva = GameObject.FindWithTag("Obstaculo");
@@ -31,7 +35,6 @@ public class playerBehaviour : MonoBehaviour
     {
         Movimentacao();
         Limite();
-
     }
 
     void Movimentacao()
@@ -46,11 +49,11 @@ public class playerBehaviour : MonoBehaviour
     }
     void Limite()
     {
-        if (transform.position.x < xmax)
+        if (transform.position.x > xmax)
         {
             transform.position = new Vector3(xmax, transform.position.y);
         }
-        else if (transform.position.x > -xmax)
+        else if (transform.position.x < -xmax)
         {
             transform.position = new Vector3(-xmax, transform.position.y);
         }
@@ -72,15 +75,14 @@ public class playerBehaviour : MonoBehaviour
         //    speed = 0;
 
 
-          //if (Input.GetKeyDown(KeyCode.Space))
-           //{
-           //    Instantiate(laser, boca.GetComponent<Transform>().position, Quaternion.identity);
-            //}
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Instantiate(laser, boca.GetComponent<Transform>().position, Quaternion.identity);
+        //}
         //}
         if (colapse.tag == "Sacola")
         {
-
-            for (int i = 2; i != -1; i--)
+            for (int i = 2; i > -1; i--)
             {
                 if (Vidas[i] == 1)
                 {
@@ -90,11 +92,14 @@ public class playerBehaviour : MonoBehaviour
                 if (Vidas[0] == 0)
                 {
                     Destroy(this.gameObject);
+                    playerAlive = false;
                 }
             }
         }
         if (colapse.tag == "Obstaculo")
         {
+
         }
     }
+      public bool PlayerAlive{ get; set;}
 }

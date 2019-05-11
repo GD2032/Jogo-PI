@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class lixos : MonoBehaviour
+public class Lixos : MonoBehaviour
 {
-    public enum obstaculos{sacola, aguaViva};
-     public obstaculos type;
-     public GameObject objetos;
+     private enum obstaculos{sacola, aguaViva};
+    [SerializeField]
+     private obstaculos type;
+     private GameObject objetos;
      //public GameObject[] vidas;
-     public GameObject golfinho;
      private Animator anim;
     
     void Start()
     {
-        golfinho = GameObject.FindWithTag("Player");
         Destroy(this.gameObject, 4);
     }
 

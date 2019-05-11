@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class comportamentoCamera : MonoBehaviour
+public class CameraBehaviour : MonoBehaviour
 {
 
     //public float zoomSpeed ;
@@ -10,20 +10,24 @@ public class comportamentoCamera : MonoBehaviour
    // public float minRange = 1.9f;
     //public float target;
  
-    public float speed;
-    public float ymax = 4.769569f;
-    public GameObject personagem;
-    float variavel;
+    private float speed;
+    private float ymax = 4.769569f;
+    [SerializeField]
+    private GameObject personagem;
+    private float eixoY;
     void Start()
     {
+        speed = 6;
     }
     void Update()
     {
-        variavel = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.up * variavel * speed * Time.deltaTime);
-        Limite();
+        //if (personagem.GetComponent<PlayerBehaviour>().PlayerAlive )
+        //{
+            eixoY = Input.GetAxis("Vertical");
+            transform.Translate(Vector3.up * eixoY * speed * Time.deltaTime);
+            Limite();
+        //}
        // Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, playerBehaviour.posicaoPersonagem, smoothSpeed * Time.deltaTime);
-
     }
     void Limite()
     {
@@ -36,6 +40,4 @@ public class comportamentoCamera : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -ymax, -10);
         }
     }
-    
- 
 }
