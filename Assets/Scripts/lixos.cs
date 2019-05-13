@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lixos : MonoBehaviour
+public class Lixos: MonoBehaviour
 {
      private enum obstaculos{sacola, aguaViva};
     [SerializeField]
