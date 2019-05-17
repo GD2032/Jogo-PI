@@ -4,8 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Obstaculo
   - Sacola
+  - Obstaculo
+  - C1
+  - C2
+  - C3
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,9 @@ public class SpawnerBehaviour : MonoBehaviour
     void Start()
     {
       InvokeRepeating("SpawnObstaculos", 0, 1.5f);
+      InvokeRepeating("SpawnObstaculos", 2f, 1.5f);
+      InvokeRepeating("SpawnObstaculos", 4f, 1.5f);
+
     }
     void Update()
     {

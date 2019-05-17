@@ -7,7 +7,11 @@ public class PlayerBehaviour : MonoBehaviour
     private int[] Vidas = new int[3] { 1, 1, 1 };
     private GameObject sacola;
     private GameObject aguaViva;
+    private GameObject[] Coracao = new GameObject[3];
 
+
+    private float animationF;
+    private float animationProx;
     private float speed;
     private static bool movimento;
     private bool playerAlive;
@@ -29,12 +33,24 @@ public class PlayerBehaviour : MonoBehaviour
         movimento = true;
         sacola = GameObject.FindWithTag("Sacola");
         aguaViva = GameObject.FindWithTag("Obstaculo");
+        Coracao[0] = GameObject.FindWithTag("C1");
+        Coracao[1] = GameObject.FindWithTag("C2");
+        Coracao[2] = GameObject.FindWithTag("C3");
     }
 
     void Update()
     {
         Movimentacao();
         Limite();
+        Debug.Log(animationProx);
+        if (Time.time > animationF)
+        {
+            GetComponent<Animator>().SetBool("Comendo", false);
+            GetComponent<Animator>().SetBool("Nadando", true);
+            animationF = 0;
+            animationProx = 0;
+        }
+ 
     }
 
     void Movimentacao()
@@ -80,34 +96,36 @@ public class PlayerBehaviour : MonoBehaviour
         //    Instantiate(laser, boca.GetComponent<Transform>().position, Quaternion.identity);
         //}
         //}
+        animationEat();
         if (colapse.tag == "Sacola")
         {
-            GetComponent<Animator>().SetBool("Comendo", true);
-            GetComponent<Animator>().SetBool("Nadando", false);
-            for (int i = 2; i > -1; i--)
+            for (int i = 0; i < 3; i++)
             {
                 if (Vidas[i] == 1)
                 {
                     Vidas[i] = 0;
+                    Destroy(Coracao[i]);
+                    if (Vidas[2] == 0)
+                    {
+                        Destroy(this.gameObject);
+                        playerAlive = false;
+                    }
                     break;
-                }
-                if (Vidas[0] == 0)
-                {
-                    Destroy(this.gameObject);
-                    playerAlive = false;
                 }
             }
         }
-        else { GetComponent<Animator>().SetBool("Comendo", false); }
         if (colapse.tag == "Obstaculo")
         {
-            GetComponent<Animator>().SetBool("Comendo", true);
-            GetComponent<Animator>().SetBool("Nadando", false);
+            // caso venha a necessitar de alguma ação referida a colisão com agua vivas
         }
-        else { GetComponent<Animator>().SetBool("Comendo", false); }
     }
       public bool PlayerAlive{ get; set;}
-    public void SetandoPraFalso() {
-        GetComponent<Animator>().SetBool("Comendo", false);
+    public void animationEat()
+    {
+        GetComponent<Animator>().SetBool("Nadando", false);
+        GetComponent<Animator>().SetBool("Comendo", true);
+        animationProx = Time.time;
+        animationF = animationProx + 1f;
     }
+
 }
