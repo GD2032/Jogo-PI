@@ -82,6 +82,8 @@ public class PlayerBehaviour : MonoBehaviour
         //}
         if (colapse.tag == "Sacola")
         {
+            GetComponent<Animator>().SetBool("Comendo", true);
+            GetComponent<Animator>().SetBool("Nadando", false);
             for (int i = 2; i > -1; i--)
             {
                 if (Vidas[i] == 1)
@@ -96,10 +98,16 @@ public class PlayerBehaviour : MonoBehaviour
                 }
             }
         }
+        else { GetComponent<Animator>().SetBool("Comendo", false); }
         if (colapse.tag == "Obstaculo")
         {
-
+            GetComponent<Animator>().SetBool("Comendo", true);
+            GetComponent<Animator>().SetBool("Nadando", false);
         }
+        else { GetComponent<Animator>().SetBool("Comendo", false); }
     }
       public bool PlayerAlive{ get; set;}
+    public void SetandoPraFalso() {
+        GetComponent<Animator>().SetBool("Comendo", false);
+    }
 }
