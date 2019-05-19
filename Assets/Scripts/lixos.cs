@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Lixos: MonoBehaviour
 {
-     private enum obstaculos{sacola, aguaViva};
+
+    private enum obstaculos{sacola, aguaViva};
     [SerializeField]
      private obstaculos type;
      private GameObject objetos;

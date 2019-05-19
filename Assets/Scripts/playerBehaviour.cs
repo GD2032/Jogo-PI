@@ -7,6 +7,7 @@ public class PlayerBehaviour : MonoBehaviour
     private int[] Vidas = new int[3] { 1, 1, 1 };
     private GameObject sacola;
     private GameObject aguaViva;
+    [SerializeField]
     private GameObject[] Coracao = new GameObject[3];
 
 
@@ -41,8 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
         Movimentacao();
-        Limite();
-        Debug.Log(animationProx);
+        Limite();    
         if (Time.time > animationF)
         {
             GetComponent<Animator>().SetBool("Comendo", false);
@@ -104,7 +104,15 @@ public class PlayerBehaviour : MonoBehaviour
                 if (Vidas[i] == 1)
                 {
                     Vidas[i] = 0;
-                    Destroy(Coracao[i]);
+                   // armazena uma referência ao SpriteRenderer no GameObject atual
+                   SpriteRenderer opacidade = Coracao[i].transform.GetComponent<SpriteRenderer>();
+                    // copia a propriedade da cor do SpriteRenderer
+                    Color opac = opacidade.color;
+                    // altera o valor alfa do opac (0 = invisível, 1 = totalmente opaco)
+                    opac.a = 0.5f;
+                    // altera a propriedade color do SpriteRenderer para corresponder à cópia com o valor alfa alterado
+                    opacidade.color = opac;
+
                     if (Vidas[2] == 0)
                     {
                         Destroy(this.gameObject);
@@ -116,7 +124,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         if (colapse.tag == "Obstaculo")
         {
-            // caso venha a necessitar de alguma ação referida a colisão com agua vivas
+    // caso venha a necessitar de alguma ação referida a colisão com agua vivas
         }
     }
       public bool PlayerAlive{ get; set;}
