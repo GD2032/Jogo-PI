@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lixos: MonoBehaviour
+public class lixos: MonoBehaviour
 {
 
     private enum obstaculos{sacola, aguaViva};
@@ -31,6 +31,9 @@ public class Lixos: MonoBehaviour
         case obstaculos.aguaViva:
             break;
         }
-        Destroy(this.gameObject);
+        if (colapse.tag == "Player")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

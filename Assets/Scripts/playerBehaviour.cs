@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBehaviour : MonoBehaviour
+public class playerBehaviour : MonoBehaviour
 {
     private int[] Vidas = new int[3] { 1, 1, 1 };
     private GameObject sacola;
     private GameObject aguaViva;
-    [SerializeField]
     private GameObject[] Coracao = new GameObject[3];
-
 
     private float animationF;
     private float animationProx;
@@ -42,7 +40,7 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
         Movimentacao();
-        Limite();    
+        Limite();
         if (Time.time > animationF)
         {
             GetComponent<Animator>().SetBool("Comendo", false);
@@ -50,7 +48,6 @@ public class PlayerBehaviour : MonoBehaviour
             animationF = 0;
             animationProx = 0;
         }
- 
     }
 
     void Movimentacao()
@@ -59,8 +56,8 @@ public class PlayerBehaviour : MonoBehaviour
         movimentoEixoY = Input.GetAxis("Vertical");
         if (movimento)
         {
-            transform.Translate(Vector3.right * movimentoEixoX * speed * Time.deltaTime);
-            transform.Translate(Vector3.up * movimentoEixoY * speed * Time.deltaTime);
+            transform.Translate(Vector3.right * movimentoEixoX * speed * Time.deltaTime, Space.World);
+            transform.Translate(Vector3.up * movimentoEixoY * speed * Time.deltaTime, Space.World);
         }
     }
     void Limite()
@@ -96,7 +93,6 @@ public class PlayerBehaviour : MonoBehaviour
         //    Instantiate(laser, boca.GetComponent<Transform>().position, Quaternion.identity);
         //}
         //}
-        animationEat();
         if (colapse.tag == "Sacola")
         {
             for (int i = 0; i < 3; i++)
@@ -104,8 +100,8 @@ public class PlayerBehaviour : MonoBehaviour
                 if (Vidas[i] == 1)
                 {
                     Vidas[i] = 0;
-                   // armazena uma referência ao SpriteRenderer no GameObject atual
-                   SpriteRenderer opacidade = Coracao[i].transform.GetComponent<SpriteRenderer>();
+                    // armazena uma referência ao SpriteRenderer no GameObject atual
+                    SpriteRenderer opacidade = Coracao[i].transform.GetComponent<SpriteRenderer>();
                     // copia a propriedade da cor do SpriteRenderer
                     Color opac = opacidade.color;
                     // altera o valor alfa do opac (0 = invisível, 1 = totalmente opaco)
@@ -127,13 +123,13 @@ public class PlayerBehaviour : MonoBehaviour
     // caso venha a necessitar de alguma ação referida a colisão com agua vivas
         }
     }
-      public bool PlayerAlive{ get; set;}
     public void animationEat()
     {
         GetComponent<Animator>().SetBool("Nadando", false);
         GetComponent<Animator>().SetBool("Comendo", true);
         animationProx = Time.time;
-        animationF = animationProx + 1f;
+        animationF = animationProx + 0.5f;
     }
+    public bool PlayerAlive{ get; set;}
 
 }

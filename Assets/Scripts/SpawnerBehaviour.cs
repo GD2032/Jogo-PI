@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnerBehaviour : MonoBehaviour
 {
     private int sorteio;
-    private int rnd;
  
     [SerializeField]
     private GameObject[] lixos;
@@ -13,6 +12,11 @@ public class SpawnerBehaviour : MonoBehaviour
     private GameObject mar;
     [SerializeField]
     private GameObject[] fish;
+    [SerializeField]
+    private GameObject[] algas;
+    [SerializeField]
+    private GameObject[] Conchas;
+
 
     void Start()
     {
@@ -21,7 +25,9 @@ public class SpawnerBehaviour : MonoBehaviour
       InvokeRepeating("SpawnObstaculos", 0f, 1.5f);
       InvokeRepeating("SpawnObstaculos", 2f, 1.5f);
       InvokeRepeating("SpawnObstaculos", 4f, 1.5f);
-
+      InvokeRepeating("CoraisSpawn", 0f, 0.5f);
+      InvokeRepeating("CoralVerdeSpawn", 1.25f, 2.5f);
+      InvokeRepeating("ConchaSpawn", 1.4f, 2.5f);
     }
     void Update()
     {
@@ -38,10 +44,27 @@ public class SpawnerBehaviour : MonoBehaviour
     }
     void BigFishSpawn ()
     {
-         rnd = Random.Range(0,3);
+        sorteio = Random.Range(0,4);
         Vector2 position = new Vector2(10, Random.Range(9f, -9f));
-        Instantiate(fish[rnd], position, Quaternion.identity);
+        Instantiate(fish[sorteio], position, Quaternion.identity);
 
+    }
+    void CoraisSpawn()
+    {
+        sorteio = Random.Range(0, 7);
+        Vector2 position = new Vector2(10f, -9f);
+        Instantiate(algas[sorteio], position, Quaternion.identity);
+    }
+    void CoralVerdeSpawn()
+    {
+        Vector2 position = new Vector2(10f, -9f);
+        Instantiate(algas[5], position, Quaternion.identity);
+    }
+    void ConchaSpawn()
+    {
+        sorteio = Random.Range(0, 2);
+        Vector2 position = new Vector2(10f, -5f);
+        Instantiate(Conchas[sorteio], position, Quaternion.identity);
     }
 } 
   
