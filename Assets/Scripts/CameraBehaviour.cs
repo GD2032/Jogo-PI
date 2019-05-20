@@ -40,4 +40,8 @@ public class CameraBehaviour : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -ymax, -10);
         }
     }
+    public void SetSpeed(float newSpeed)
+    {
+        this.speed = newSpeed;
+    }
 }

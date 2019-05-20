@@ -482,7 +482,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lixos:
-  - {fileID: 891524102129578404, guid: dec4d611e7bbe2c45aa200043d2dfccc, type: 3}
+  - {fileID: 7975933541953886869, guid: d135a4d59b5ff0c4d8ffd6cdede5a2aa, type: 3}
+  - {fileID: 2249571302569442548, guid: 19126d903c3fb80409249073bdae512a, type: 3}
+  - {fileID: 2077212701494094109, guid: 26f8fba7a86ca1a47ab8eb742d84afe1, type: 3}
   - {fileID: 6500766832212073348, guid: 840757ba7eda4874e89639dcc0113f06, type: 3}
   mar: {fileID: 4045299536566814720, guid: d9d434d74e630d6459e4795ff251ecdb, type: 3}
   fish:

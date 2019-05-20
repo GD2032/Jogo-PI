@@ -20,7 +20,7 @@ public class lixos: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(-6, 0);
+        transform.Translate (Vector3.up * Time.deltaTime * 6);
     }
     void OnTriggerEnter2D(Collider2D colapse)
     {

@@ -34,7 +34,7 @@ public class SpawnerBehaviour : MonoBehaviour
     }
     void SpawnObstaculos()
     {
-        sorteio = Random.Range(0, 2);
+        sorteio = Random.Range(0, 4);
         Vector2 position = new Vector2(14, Random.Range(2, -6.89f));
         Instantiate(lixos[sorteio], position, Quaternion.identity);
     }
@@ -47,6 +47,7 @@ public class SpawnerBehaviour : MonoBehaviour
         sorteio = Random.Range(0,4);
         Vector2 position = new Vector2(10, Random.Range(9f, -9f));
         Instantiate(fish[sorteio], position, Quaternion.identity);
+         Instantiate(algas[3], new Vector2(10f, -9f), Quaternion.identity);
 
     }
     void CoraisSpawn()
@@ -57,13 +58,15 @@ public class SpawnerBehaviour : MonoBehaviour
     }
     void CoralVerdeSpawn()
     {
-        Vector2 position = new Vector2(10f, -9f);
+        Vector2 position = new Vector2(10f, -8.5f);
         Instantiate(algas[5], position, Quaternion.identity);
+        Instantiate(algas[5], new Vector2 ( 14f,-9.7f), Quaternion.identity);
+
     }
     void ConchaSpawn()
     {
         sorteio = Random.Range(0, 2);
-        Vector2 position = new Vector2(10f, -5f);
+        Vector2 position = new Vector2(10f, -9.7f);
         Instantiate(Conchas[sorteio], position, Quaternion.identity);
     }
 } 

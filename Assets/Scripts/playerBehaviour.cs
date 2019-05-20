@@ -8,6 +8,7 @@ public class playerBehaviour : MonoBehaviour
     private GameObject sacola;
     private GameObject aguaViva;
     private GameObject[] Coracao = new GameObject[3];
+    private float contadorQte;
 
     private float animationF;
     private float animationProx;
@@ -99,6 +100,7 @@ public class playerBehaviour : MonoBehaviour
             {
                 if (Vidas[i] == 1)
                 {
+                    contadorQte++;
                     Vidas[i] = 0;
                     // armazena uma referência ao SpriteRenderer no GameObject atual
                     SpriteRenderer opacidade = Coracao[i].transform.GetComponent<SpriteRenderer>();
@@ -108,11 +110,15 @@ public class playerBehaviour : MonoBehaviour
                     opac.a = 0.5f;
                     // altera a propriedade color do SpriteRenderer para corresponder à cópia com o valor alfa alterado
                     opacidade.color = opac;
-
+        
                     if (Vidas[2] == 0)
                     {
                         Destroy(this.gameObject);
                         playerAlive = false;
+                    }
+                    else if(contadorQte == 2)
+                    {
+                        quickTimeEvent();
                     }
                     break;
                 }
@@ -131,5 +137,11 @@ public class playerBehaviour : MonoBehaviour
         animationF = animationProx + 0.5f;
     }
     public bool PlayerAlive{ get; set;}
+    public void quickTimeEvent()
+    {
+        movimento = false;
+        GetComponent<CameraBehaviour>().SetSpeed(2f);
+        
+    }
 
 }
