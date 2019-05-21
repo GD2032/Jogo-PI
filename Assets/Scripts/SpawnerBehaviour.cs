@@ -37,6 +37,8 @@ public class SpawnerBehaviour : MonoBehaviour
         sorteio = Random.Range(0, 4);
         Vector2 position = new Vector2(14, Random.Range(2, -6.89f));
         Instantiate(lixos[sorteio], position, Quaternion.identity);
+        sorteio = Random.Range(0, 4);
+        Instantiate(lixos[3], position, Quaternion.identity);
     }
     void SeaSpawn()
     {
