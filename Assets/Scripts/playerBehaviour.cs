@@ -7,6 +7,7 @@ public class playerBehaviour : MonoBehaviour
     private int[] Vidas = new int[3] { 1, 1, 1 };
     private GameObject sacola;
     private GameObject aguaViva;
+    private GameObject camera;
     private GameObject[] Coracao = new GameObject[3];
     private float contadorQte;
 
@@ -27,7 +28,7 @@ public class playerBehaviour : MonoBehaviour
 
     void Start()
     {
-
+        camera = GameObject.FindWithTag("MainCamera");
         speed = 8;
         playerAlive = true;
         movimento = true;
@@ -140,7 +141,8 @@ public class playerBehaviour : MonoBehaviour
     public void quickTimeEvent()
     {
         movimento = false;
-        GetComponent<CameraBehaviour>().SetSpeed(2f);
+        camera.GetComponent<CameraBehaviour>().SetSpeed(0);
+        camera.GetComponent<CameraBehaviour>().SetZoomQte(true);
         
     }
 
