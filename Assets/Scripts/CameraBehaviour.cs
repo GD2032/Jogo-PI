@@ -11,9 +11,9 @@ public class CameraBehaviour : MonoBehaviour
     //public float target;
 
     private float speedZoom;
-    private float Exp = 2.23f;
+    private bool enterZoom;
     private Vector2 newPosition;
-    private Vector2 target;
+    private Vector3 target;
     private Camera camera;
     private float size;
     private float sizeAdd = 4f;
@@ -42,10 +42,7 @@ public class CameraBehaviour : MonoBehaviour
             Limite();
         if (zoomQte)
         {
-            if(camera.orthographicSize > 3f)
-            {
-                Zoom(8f, 1f);
-            }
+            Zoom(8f, 0.1f);
         }
         //}
        // Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, playerBehaviour.posicaoPersonagem, smoothSpeed * Time.deltaTime);
@@ -80,19 +77,24 @@ public class CameraBehaviour : MonoBehaviour
     }
     public void Zoom(float speed, float speedZoom)
     {
-        /* target = personagem.transform.position;
-         size = target.x;
-         size = Mathf.Max(size, target.y);
-         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-         camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, size, ref speedZoom, 4f);  */
         target = personagem.transform.position;
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        camera.orthographicSize = Mathf.Pow(0.5f,speedZoom);
-        if(speedZoom >= 0)
+        camera.transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        if(enterZoom)
         {
+            if(camera.orthographicSize >= 1.5f)
+            {
+            speedZoom = Mathf.Sqrt(camera.orthographicSize - speedZoom);
+            camera.orthographicSize = speedZoom * speedZoom + Time.deltaTime * speedZoom;  
+            speedZoom -= 1f;
+            }
+            else
+            {
+                enterZoom = false;
+            }
+            if(speedZoom >= 0)
+            {
             speedZoom = 0.1f;
-        }
-        speedZoom -= 1f * Time.deltaTime;
-        
+            }            
+        } 
     }
 }
