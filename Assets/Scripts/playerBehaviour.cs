@@ -8,6 +8,10 @@ public class playerBehaviour : MonoBehaviour
     private GameObject sacola;
     private GameObject aguaViva;
     private GameObject camera;
+    [SerializeField]
+    private GameObject fundoPreto;
+    [SerializeField]
+    private GameObject fundoPreto2;
     private GameObject[] Coracao = new GameObject[3];
     private float contadorQte;
 
@@ -83,18 +87,6 @@ public class playerBehaviour : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D colapse)
     {
-
-        //if (colapse.tag == "qte")
-        //{
-        //    posicaoPersonagem = transform.position.x;
-        //    speed = 0;
-
-
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    Instantiate(laser, boca.GetComponent<Transform>().position, Quaternion.identity);
-        //}
-        //}
         if (colapse.tag == "Sacola")
         {
             for (int i = 0; i < 3; i++)
@@ -114,7 +106,8 @@ public class playerBehaviour : MonoBehaviour
         
                     if (Vidas[2] == 0)
                     {
-                        Destroy(this.gameObject);
+                        Instantiate(fundoPreto);
+                        StartCoroutine(contagemFadeOut());    
                         playerAlive = false;
                     }
                     else if(contadorQte == 2)
@@ -144,6 +137,14 @@ public class playerBehaviour : MonoBehaviour
         camera.GetComponent<CameraBehaviour>().SetSpeed(0);
         camera.GetComponent<CameraBehaviour>().SetZoomQte(true);
         
+    }
+   IEnumerator contagemFadeOut()
+    {
+        yield return new WaitForSeconds(0.6f);
+        Destroy(this.fundoPreto);
+        Instantiate(this.fundoPreto2);
+        Destroy(this.gameObject);
+
     }
 
 }
