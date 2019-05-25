@@ -10,50 +10,60 @@ public class CameraBehaviour : MonoBehaviour
     // public float minRange = 1.9f;
     //public float target;
 
+    private float força;
     private float speedZoom;
     private bool enterZoom;
-    private Vector2 newPosition;
     private Vector3 target;
     private Camera camera;
     private float size;
-    private float sizeAdd = 4f;
-    private float sizeMin = 1f;
     private float speed;
     private float xmax = 2.3f;
-    private float xmin = 0.3f; 
+    private float xmin = 0.3f;
     private float ymax = 4.769569f;
     [SerializeField]
     private GameObject personagem;
     private float eixoY;
     private bool zoomQte;
+    private float percentageSpeed;
+    private bool FundoOpac;
     void Start()
     {
-
+        percentageSpeed = 1;
+        enterZoom = true;
         camera = GetComponentInChildren<Camera>();
+        camera.orthographicSize = 3f;
         speed = 6;
-        newPosition = transform.position;
     }
     void Update()
     {
         //if (personagem.GetComponent<PlayerBehaviour>().PlayerAlive )
         //
-            eixoY = Input.GetAxis("Vertical");
-            transform.Translate(Vector3.up * eixoY * speed * Time.deltaTime);
-            Limite();
+        if (FundoOpac && Time.time > 3.5f)
+        {
+            print("entrou");
+            Zoom(1f, 5f, false, false);
+            if(camera.orthographicSize >= 5)
+            {
+                FundoOpac = false;
+            }
+        }
+        eixoY = Input.GetAxis("Vertical");
+        transform.Translate(Vector3.up * eixoY * speed * Time.deltaTime);
+        Limite();
         if (zoomQte)
         {
-            Zoom(8f, 0.1f);
+            Zoom(1f, 2f, speed: 4f);
         }
         //}
-       // Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, playerBehaviour.posicaoPersonagem, smoothSpeed * Time.deltaTime);
+        // Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, playerBehaviour.posicaoPersonagem, smoothSpeed * Time.deltaTime);
     }
     void Limite()
     {
-        if(transform.position.y > ymax)
+        if (transform.position.y > ymax)
         {
-            transform.position = new Vector3(transform.position.x, ymax, -10); 
+            transform.position = new Vector3(transform.position.x, ymax, -10);
         }
-        if(transform.position.y < -ymax)
+        if (transform.position.y < -ymax)
         {
             transform.position = new Vector3(transform.position.x, -ymax, -10);
         }
@@ -75,26 +85,41 @@ public class CameraBehaviour : MonoBehaviour
     {
         this.zoomQte = condition;
     }
-    public void Zoom(float speed, float speedZoom)
+    public void SetFundoOpac(bool condition)
     {
-        target = personagem.transform.position;
-        camera.transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if(enterZoom)
+        this.FundoOpac = condition;
+    }
+    public void Zoom(float speedZoom, float limite, bool seguirPersonagem = true, bool zoomInside = true, float speed = 0f)
+    {
+        if (seguirPersonagem)
         {
-            if(camera.orthographicSize >= 1.5f)
+            target = personagem.transform.position;
+            camera.transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        }
+
+        if (enterZoom)
+        {
+            if (zoomInside ? camera.orthographicSize >= limite : camera.orthographicSize <= limite)
             {
-            speedZoom = Mathf.Sqrt(camera.orthographicSize - speedZoom);
-            camera.orthographicSize = speedZoom * speedZoom + Time.deltaTime * speedZoom;  
-            speedZoom -= 1f;
+                força = speedZoom * percentageSpeed;
+                if (zoomInside)
+                {
+                    camera.orthographicSize += Time.deltaTime * força;
+                }
+                else
+                {
+                    camera.orthographicSize -= Time.deltaTime * força;
+                }
+                percentageSpeed -= 0.1f;
             }
             else
             {
                 enterZoom = false;
             }
-            if(speedZoom >= 0)
+            if (speedZoom <= 0)
             {
-            speedZoom = 0.1f;
-            }            
-        } 
+                speedZoom = 0.1f;
+            }
+        }
     }
 }

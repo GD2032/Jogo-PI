@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5165b5d527226254c850ac0abf1885dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 519420031}
 --- !u!95 &388321618
 Animator:
   serializedVersion: 3
@@ -577,6 +578,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fundo preto (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1342165652973071432, guid: ebdfb5da23ca516429b05dce871fac37,
+        type: 3}
+      propertyPath: m_TagString
+      value: AberturaCena
+      objectReference: {fileID: 0}
     - target: {fileID: 6210921307401331480, guid: ebdfb5da23ca516429b05dce871fac37,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -667,6 +673,11 @@ PrefabInstance:
       propertyPath: fundo
       value: 
       objectReference: {fileID: 885350565}
+    - target: {fileID: 4537810078794541469, guid: ebdfb5da23ca516429b05dce871fac37,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebdfb5da23ca516429b05dce871fac37, type: 3}
 --- !u!1 &873874945
@@ -921,6 +932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5165b5d527226254c850ac0abf1885dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 519420031}
 --- !u!1 &1022179422
 GameObject:
   m_ObjectHideFlags: 0
