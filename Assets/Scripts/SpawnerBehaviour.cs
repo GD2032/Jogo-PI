@@ -22,9 +22,9 @@ public class SpawnerBehaviour : MonoBehaviour
     {
       InvokeRepeating("BigFishSpawn", 4f, 5f);
       InvokeRepeating("SeaSpawn", 0f ,1.5f);
-      InvokeRepeating("SpawnObstaculos", 0f, 1.5f);
-      InvokeRepeating("SpawnObstaculos", 2f, 1.5f);
-      InvokeRepeating("SpawnObstaculos", 4f, 1.5f);
+      InvokeRepeating("SpawnObstaculos", 8f, 1.5f);
+      InvokeRepeating("SpawnObstaculos", 10f, 1.5f);
+      InvokeRepeating("SpawnObstaculos", 12f, 1.5f);
       InvokeRepeating("CoraisSpawn", 0f, 0.5f);
       InvokeRepeating("CoralVerdeSpawn", 1.25f, 2.5f);
       InvokeRepeating("ConchaSpawn", 1.4f, 2.5f);

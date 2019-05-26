@@ -25,26 +25,26 @@ public class CameraBehaviour : MonoBehaviour
     private float eixoY;
     private bool zoomQte;
     private float percentageSpeed;
-    private bool FundoOpac;
+    private bool startScene;
     void Start()
     {
         percentageSpeed = 1;
         enterZoom = true;
         camera = GetComponentInChildren<Camera>();
-        camera.orthographicSize = 3f;
+        camera.orthographicSize = 0f;
         speed = 6;
+        startScene = true;
     }
     void Update()
     {
         //if (personagem.GetComponent<PlayerBehaviour>().PlayerAlive )
         //
-        if (FundoOpac && Time.time > 3.5f)
+        if (startScene && Time.time > 3.8f)
         {
-            print("entrou");
-            Zoom(1f, 5f, false, false);
-            if(camera.orthographicSize >= 5)
+            Zoom(0.2f, 5f,false, false);
+            if (camera.orthographicSize >= 5)
             {
-                FundoOpac = false;
+                startScene = false;
             }
         }
         eixoY = Input.GetAxis("Vertical");
@@ -52,7 +52,7 @@ public class CameraBehaviour : MonoBehaviour
         Limite();
         if (zoomQte)
         {
-            Zoom(1f, 2f, speed: 4f);
+            Zoom(0.5f, 2.5f, speed: 4f);
         }
         //}
         // Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, playerBehaviour.posicaoPersonagem, smoothSpeed * Time.deltaTime);
@@ -85,41 +85,37 @@ public class CameraBehaviour : MonoBehaviour
     {
         this.zoomQte = condition;
     }
-    public void SetFundoOpac(bool condition)
-    {
-        this.FundoOpac = condition;
-    }
-    public void Zoom(float speedZoom, float limite, bool seguirPersonagem = true, bool zoomInside = true, float speed = 0f)
+    public void Zoom(float speedZoom, float limite, bool seguirPersonagem = true, bool zoomInside = true, bool enterZoom = true, float speed = 0f)
     {
         if (seguirPersonagem)
         {
             target = personagem.transform.position;
             camera.transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
-
         if (enterZoom)
-        {
+        { 
             if (zoomInside ? camera.orthographicSize >= limite : camera.orthographicSize <= limite)
             {
                 força = speedZoom * percentageSpeed;
                 if (zoomInside)
                 {
-                    camera.orthographicSize += Time.deltaTime * força;
+                     camera.orthographicSize -= Time.deltaTime * força;
                 }
                 else
                 {
-                    camera.orthographicSize -= Time.deltaTime * força;
+                     camera.orthographicSize += Time.deltaTime * força;
                 }
-                percentageSpeed -= 0.1f;
+                percentageSpeed += 0.1f;
             }
             else
             {
                 enterZoom = false;
             }
-            if (speedZoom <= 0)
+            if (percentageSpeed <= 0)
             {
-                speedZoom = 0.1f;
+                percentageSpeed = 0.1f;
             }
         }
     }
 }
+

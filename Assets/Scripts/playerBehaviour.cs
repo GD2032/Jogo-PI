@@ -34,7 +34,6 @@ public class playerBehaviour : MonoBehaviour
     {
         camera = GameObject.FindWithTag("MainCamera");
         speed = 8;
-        playerAlive = true;
         movimento = true;
         sacola = GameObject.FindWithTag("Sacola");
         aguaViva = GameObject.FindWithTag("Obstaculo");

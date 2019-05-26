@@ -14,7 +14,7 @@ public class medusaBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(2f, 0) *aceleracao* -1 * Time.deltaTime;
+        transform.position += new Vector3(2f, 0) * aceleracao * -1 * Time.deltaTime;
         aceleracao -= 0.02f;
         if (aceleracao <= 0.1)
         {
