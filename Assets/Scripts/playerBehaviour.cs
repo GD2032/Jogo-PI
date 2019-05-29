@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class playerBehaviour : MonoBehaviour
 {
     private int[] Vidas = new int[3] { 1, 1, 1 };
+    [SerializeField]
+    private Text pontuacao;
+    private float Count;
     private GameObject sacola;
     private GameObject aguaViva;
     private GameObject camera;
@@ -53,6 +56,9 @@ public class playerBehaviour : MonoBehaviour
             animationF = 0;
             animationProx = 0;
         }
+        Count= Mathf.Round(Time.time);
+        
+        pontuacao.text = Count.ToString();
     }
 
     void Movimentacao()
@@ -109,10 +115,10 @@ public class playerBehaviour : MonoBehaviour
                         StartCoroutine(contagemFadeOut());    
                         playerAlive = false;
                     }
-                    else if(contadorQte == 2)
+                    /*else if(contadorQte == 2)
                     {
                         quickTimeEvent();
-                    }
+                    }*/
                     break;
                 }
             }

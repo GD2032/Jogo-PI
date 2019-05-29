@@ -9,7 +9,7 @@ public class FadeIN : MonoBehaviour
     }
     void Update()
     {
-        if (Time.time >= 10)
+        if (Time.time >= 10 && gameObject.tag == "AberturaCena")
         {
             Destroy(this.gameObject);
         }
