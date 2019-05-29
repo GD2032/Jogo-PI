@@ -14,5 +14,10 @@ public class FadeIN : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        if (Time.time >=6 && gameObject.tag == "Pontuacao")
+        {
+            
+        }
+
     }
 }

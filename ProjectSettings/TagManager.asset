@@ -10,6 +10,7 @@ TagManager:
   - C2
   - C3
   - AberturaCena
+  - Pontuacao
   layers:
   - Default
   - TransparentFX
