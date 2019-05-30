@@ -10,6 +10,8 @@ public class SpawnerBehaviour : CountTime
     [SerializeField]
     private GameObject[] lixos;
     [SerializeField]
+    private GameObject[] cacteis;
+    [SerializeField]
     private GameObject mar;
     [SerializeField]
     private GameObject[] fish;
@@ -17,12 +19,14 @@ public class SpawnerBehaviour : CountTime
     private GameObject[] algas;
     [SerializeField]
     private GameObject[] Conchas;
+    
 
 
     void Start()
     {
       InvokeRepeating("BigFishSpawn", 4f, 5f);
-      InvokeRepeating("SeaSpawn", 0f ,1.5f);
+        InvokeRepeating("SpawnCacteis", 8f, 1.5f);
+        InvokeRepeating("SeaSpawn", 0f ,1.5f);
       InvokeRepeating("SpawnObstaculos", 8f, 1.5f);
       InvokeRepeating("SpawnObstaculos", 10f, 1.5f);
       InvokeRepeating("SpawnObstaculos", 12f, 1.5f);
@@ -38,8 +42,16 @@ public class SpawnerBehaviour : CountTime
         sorteio = Random.Range(0, 4);
         Vector2 position = new Vector2(14, Random.Range(2, -6.89f));
         Instantiate(lixos[sorteio], position, Quaternion.identity);
-        sorteio = Random.Range(0, 4);
-        Instantiate(lixos[3], position, Quaternion.identity);
+
+
+    }
+    void SpawnCacteis()
+    {
+        sorteio = Random.Range(0, 2);
+        Vector2 position = new Vector2(14, Random.Range(2, -6.89f));
+        Instantiate(cacteis[sorteio], position, transform.rotation);
+
+
     }
     void SeaSpawn()
     {
