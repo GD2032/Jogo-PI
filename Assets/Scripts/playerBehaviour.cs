@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class playerBehaviour : MonoBehaviour
+public class playerBehaviour : CountTime
 {
     private int[] Vidas = new int[3] { 1, 1, 1 };
     [SerializeField]
@@ -17,6 +18,8 @@ public class playerBehaviour : MonoBehaviour
     private GameObject fundoPreto2;
     private GameObject[] Coracao = new GameObject[3];
     private float contadorQte;
+    private bool leftArrow;
+    private bool rightArrow;
 
     private float animationF;
     private float animationProx;
@@ -35,6 +38,7 @@ public class playerBehaviour : MonoBehaviour
 
     void Start()
     {
+        startTime = Time.time;
         camera = GameObject.FindWithTag("MainCamera");
         speed = 8;
         movimento = true;
@@ -47,16 +51,17 @@ public class playerBehaviour : MonoBehaviour
 
     void Update()
     {
+        Tempo(startTime);
         Movimentacao();
         Limite();
-        if (Time.time > animationF)
+        if ( actualTime > animationF)
         {
             GetComponent<Animator>().SetBool("Comendo", false);
             GetComponent<Animator>().SetBool("Nadando", true);
             animationF = 0;
             animationProx = 0;
         }
-        Count= Mathf.Round(Time.time);
+        Count = Mathf.Round(actualTime);
         
         pontuacao.text = Count.ToString();
     }
@@ -132,7 +137,7 @@ public class playerBehaviour : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("Nadando", false);
         GetComponent<Animator>().SetBool("Comendo", true);
-        animationProx = Time.time;
+        animationProx = actualTime;
         animationF = animationProx + 0.5f;
     }
     public bool PlayerAlive{ get; set;}
@@ -141,6 +146,7 @@ public class playerBehaviour : MonoBehaviour
         movimento = false;
         camera.GetComponent<CameraBehaviour>().SetSpeed(0);
         camera.GetComponent<CameraBehaviour>().SetZoomQte(true);
+
         
     }
    IEnumerator contagemFadeOut()

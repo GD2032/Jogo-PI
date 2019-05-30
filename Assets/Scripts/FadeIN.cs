@@ -1,23 +1,25 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FadeIN : MonoBehaviour
+public class FadeIN : CountTime
 {
     void Start()
     {
+        startTime = Time.time; 
     }
     void Update()
     {
-        if (Time.time >= 10 && gameObject.tag == "AberturaCena")
+        Tempo(startTime);
+        if (actualTime >= 11.5f && gameObject.tag == "AberturaCena")
         {
             Destroy(this.gameObject);
         }
 
-        if (Time.time >=6 && gameObject.tag == "Pontuacao")
+        if (actualTime >=6 && gameObject.tag == "Pontuacao")
         {
             
         }
-
     }
 }

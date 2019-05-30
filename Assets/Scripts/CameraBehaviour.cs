@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraBehaviour : MonoBehaviour
+public class CameraBehaviour : CountTime
 {
 
     //public float zoomSpeed ;
@@ -37,9 +38,10 @@ public class CameraBehaviour : MonoBehaviour
     }
     void Update()
     {
+        Tempo(startTime);
         //if (personagem.GetComponent<PlayerBehaviour>().PlayerAlive )
         //
-        if (startScene && Time.time > 3.8f)
+        if (startScene && actualTime > 3.8f)
         {
             Zoom(0.2f, 5f,false, false);
             if (camera.orthographicSize >= 5)

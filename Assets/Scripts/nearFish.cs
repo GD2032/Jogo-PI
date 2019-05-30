@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class nearFish : MonoBehaviour
+public class nearFish : CountTime
 {
 
     void Start()
@@ -12,7 +13,7 @@ public class nearFish : MonoBehaviour
 
     void Update()
     {
-        transform.position += new Vector3(1, 0) * Time.deltaTime* -4 ;
+        transform.position += new Vector3(-5, 0) * Time.deltaTime  ;
         if (transform.position.x < -10f)
         {
             Destroy(this.gameObject);

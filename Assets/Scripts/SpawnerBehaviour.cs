@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerBehaviour : MonoBehaviour
+public class SpawnerBehaviour : CountTime
 {
     private int sorteio;
  
