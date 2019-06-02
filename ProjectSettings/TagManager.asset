@@ -11,6 +11,7 @@ TagManager:
   - C3
   - AberturaCena
   - Pontuacao
+  - SacolaQte
   layers:
   - Default
   - TransparentFX

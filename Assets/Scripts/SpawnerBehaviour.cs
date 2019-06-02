@@ -1,4 +1,5 @@
-﻿using Assets.Scripts;
+﻿
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class SpawnerBehaviour : CountTime
     [SerializeField]
     private GameObject[] lixos;
     [SerializeField]
+    private GameObject sacolaQte;
+    [SerializeField]
     private GameObject[] cacteis;
     [SerializeField]
     private GameObject mar;
@@ -19,51 +22,49 @@ public class SpawnerBehaviour : CountTime
     private GameObject[] algas;
     [SerializeField]
     private GameObject[] Conchas;
-    
-
-
+    [SerializeField]
+    private GameObject predios;
     void Start()
     {
-      InvokeRepeating("BigFishSpawn", 4f, 5f);
-        InvokeRepeating("SpawnCacteis", 8f, 1.5f);
-        InvokeRepeating("SeaSpawn", 0f ,1.5f);
-      InvokeRepeating("SpawnObstaculos", 8f, 1.5f);
-      InvokeRepeating("SpawnObstaculos", 10f, 1.5f);
-      InvokeRepeating("SpawnObstaculos", 12f, 1.5f);
-      InvokeRepeating("CoraisSpawn", 0f, 0.5f);
-      InvokeRepeating("CoralVerdeSpawn", 1.25f, 2.5f);
-      InvokeRepeating("ConchaSpawn", 1.4f, 2.5f);
+      	InvokeRepeating("BigFishSpawn", 4f, 5f);
+      	InvokeRepeating("SpawnCacteis", 14f, 1.5f);
+      	InvokeRepeating("SeaSpawn", 0f ,2.38f);
+	    InvokeRepeating("SpawnObstaculos", 8f, 1.5f);
+      	InvokeRepeating("SpawnObstaculos", 10f, 1.5f);
+      	InvokeRepeating("SpawnObstaculos", 12f, 1.5f);
+      	InvokeRepeating("CoraisSpawn", 0f, 0.5f);
+      	InvokeRepeating("CoralVerdeSpawn", 1.25f, 2.5f);
+      	InvokeRepeating("ConchaSpawn", 1.4f, 2.5f);
+	    InvokeRepeating("QteSacolaSpawn", 60f, 10f); 
     }
+
     void Update()
     {
     }
+
     void SpawnObstaculos()
     {
         sorteio = Random.Range(0, 4);
         Vector2 position = new Vector2(14, Random.Range(2, -6.89f));
         Instantiate(lixos[sorteio], position, Quaternion.identity);
-
-
     }
     void SpawnCacteis()
     {
         sorteio = Random.Range(0, 2);
         Vector2 position = new Vector2(14, Random.Range(2, -6.89f));
-        Instantiate(cacteis[sorteio], position, transform.rotation);
-
-
+        Instantiate(cacteis[sorteio], position, Quaternion.identity);
     }
     void SeaSpawn()
     {
-        Instantiate(mar,new Vector2(7.5f,-0.04f), Quaternion.identity);
+        Instantiate(mar,new Vector2(14,2), Quaternion.identity);
+        Instantiate(predios, new Vector2(80, 3.5f), Quaternion.identity);
     }
     void BigFishSpawn ()
     {
         sorteio = Random.Range(0,4);
         Vector2 position = new Vector2(10, Random.Range(9f, -9f));
         Instantiate(fish[sorteio], position, Quaternion.identity);
-         Instantiate(algas[3], new Vector2(10f, -9f), Quaternion.identity);
-
+        Instantiate(algas[3], new Vector2(10f, -9f), Quaternion.identity);
     }
     void CoraisSpawn()
     {
@@ -76,7 +77,6 @@ public class SpawnerBehaviour : CountTime
         Vector2 position = new Vector2(10f, -8.5f);
         Instantiate(algas[5], position, Quaternion.identity);
         Instantiate(algas[5], new Vector2 ( 14f,-9.7f), Quaternion.identity);
-
     }
     void ConchaSpawn()
     {
@@ -84,5 +84,9 @@ public class SpawnerBehaviour : CountTime
         Vector2 position = new Vector2(10f, -9.7f);
         Instantiate(Conchas[sorteio], position, Quaternion.identity);
     }
-} 
-  
+    void QteSacolaSpawn()
+    {
+	Vector2 position = new Vector2(14,Random.Range(2, -6.89f));
+	Instantiate(sacolaQte,position,Quaternion.identity); 
+    }
+}

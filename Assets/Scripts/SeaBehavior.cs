@@ -14,7 +14,7 @@ public class SeaBehavior : CountTime
     void Update()
     {
         transform.position += new Vector3(-9, 0) * Time.deltaTime;
-        if (transform.position.x <= -7.8f)
+        if (transform.position.x <= -17)
         {
             Destroy(this.gameObject);
         }
