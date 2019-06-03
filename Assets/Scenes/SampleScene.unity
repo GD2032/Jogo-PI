@@ -658,12 +658,12 @@ PrefabInstance:
     - target: {fileID: 6210921307401331480, guid: ebdfb5da23ca516429b05dce871fac37,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.91
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6210921307401331480, guid: ebdfb5da23ca516429b05dce871fac37,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -27.57
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6210921307401331480, guid: ebdfb5da23ca516429b05dce871fac37,
         type: 3}
@@ -1262,7 +1262,7 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 6
-    m_MaxSize: 40
+    m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
