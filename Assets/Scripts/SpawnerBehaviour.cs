@@ -1,6 +1,6 @@
 ﻿
 using Assets.Scripts;
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class SpawnerBehaviour : CountTime
     [SerializeField]
     private GameObject sacolaQte;
     [SerializeField]
-    private GameObject[] cacteis;
+    private GameObject[] garrafas;
     [SerializeField]
     private GameObject mar;
     [SerializeField]
@@ -27,8 +27,9 @@ public class SpawnerBehaviour : CountTime
     void Start()
     {
       	InvokeRepeating("BigFishSpawn", 4f, 5f);
-      	InvokeRepeating("SpawnCacteis", 14f, 1.5f);
-      	InvokeRepeating("SeaSpawn", 0f ,2.38f);
+      	InvokeRepeating("SpawnGarrafas", 14f, 1.5f);
+      	InvokeRepeating("SeaSpawn", 0f , 1.5f);
+        InvokeRepeating("PrediosSpawn", 0f, 1.5f);
 	    InvokeRepeating("SpawnObstaculos", 8f, 1.5f);
       	InvokeRepeating("SpawnObstaculos", 10f, 1.5f);
       	InvokeRepeating("SpawnObstaculos", 12f, 1.5f);
@@ -48,15 +49,18 @@ public class SpawnerBehaviour : CountTime
         Vector2 position = new Vector2(14, Random.Range(2, -6.89f));
         Instantiate(lixos[sorteio], position, Quaternion.identity);
     }
-    void SpawnCacteis()
+    void SpawnGarrafas()
     {
         sorteio = Random.Range(0, 2);
         Vector2 position = new Vector2(14, Random.Range(2, -6.89f));
-        Instantiate(cacteis[sorteio], position, Quaternion.identity);
+        Instantiate(garrafas[sorteio], position, Quaternion.identity);
     }
     void SeaSpawn()
     {
         Instantiate(mar,new Vector2(14,2), Quaternion.identity);
+    }
+    void PrediosSpawn()
+    {
         Instantiate(predios, new Vector2(80, 3.5f), Quaternion.identity);
     }
     void BigFishSpawn ()
@@ -86,7 +90,7 @@ public class SpawnerBehaviour : CountTime
     }
     void QteSacolaSpawn()
     {
-	Vector2 position = new Vector2(14,Random.Range(2, -6.89f));
-	Instantiate(sacolaQte,position,Quaternion.identity); 
+	    Vector2 position = new Vector2(14,Random.Range(2, -6.89f));
+	    Instantiate(sacolaQte,position,Quaternion.identity); 
     }
 }

@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2768256753073536933}
   - component: {fileID: 5902067281209621634}
+  - component: {fileID: 744324433086863623}
   - component: {fileID: 6086862618868851316}
   - component: {fileID: 5779700508562572756}
-  - component: {fileID: 1866150342211947176}
   - component: {fileID: 3911956311096487247}
   m_Layer: 0
   m_Name: Garrafa 1
@@ -83,6 +83,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &744324433086863623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3737881972081160653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d6523935e0156459a200349ce3132d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!61 &6086862618868851316
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -96,7 +109,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.14004573, y: 0.051278114}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -107,7 +120,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 0.3755893, y: 1.1208494}
   m_EdgeRadius: 0
 --- !u!50 &5779700508562572756
 Rigidbody2D:
@@ -123,25 +136,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1866150342211947176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3737881972081160653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e16424dc1fe8e4e98ad08b15b61cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &3911956311096487247
 Animator:
   serializedVersion: 3

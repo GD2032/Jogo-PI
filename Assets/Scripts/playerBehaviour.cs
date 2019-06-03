@@ -146,7 +146,7 @@ public class playerBehaviour : CountTime
         movimento = false;
         camera.GetComponent<CameraBehaviour>().SetSpeed(0);
         camera.GetComponent<CameraBehaviour>().SetZoomQte(true);
-
+        
         
     }
    IEnumerator contagemFadeOut()

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2249571302569442545}
   - component: {fileID: 2249571302569442550}
   - component: {fileID: 2249571302569442551}
+  - component: {fileID: 7002456560509801056}
   - component: {fileID: 2249571302569442544}
-  - component: {fileID: 1975616022972757127}
+  - component: {fileID: 1932008681426689523}
   - component: {fileID: 4692467657133648799}
   m_Layer: 0
   m_Name: sacola 22222
@@ -102,6 +103,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7002456560509801056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2249571302569442548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d6523935e0156459a200349ce3132d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!61 &2249571302569442544
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -128,7 +142,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4174922, y: 0.53310156}
   m_EdgeRadius: 0
---- !u!114 &1975616022972757127
+--- !u!114 &1932008681426689523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,10 +151,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2249571302569442548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7d6523935e0156459a200349ce3132d, type: 3}
+  m_Script: {fileID: 11500000, guid: 20fa7f8f5ffe5f8419ada290e5d1bb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
 --- !u!50 &4692467657133648799
 Rigidbody2D:
   serializedVersion: 4
