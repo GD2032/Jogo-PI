@@ -24,6 +24,7 @@ public class playerBehaviour : CountTime
     private float animationF;
     private float animationProx;
     private float speed;
+    public float opacidadee;
     private static bool movimento;
     private bool playerAlive;
     private static float posicaoPersonagem;
@@ -40,7 +41,8 @@ public class playerBehaviour : CountTime
     {
         startTime = Time.time;
         camera = GameObject.FindWithTag("MainCamera");
-        speed = 8;
+        speed = 8; 
+        opacidadee = 0;
         movimento = true;
         sacola = GameObject.FindWithTag("Sacola");
         aguaViva = GameObject.FindWithTag("Obstaculo");
@@ -54,6 +56,19 @@ public class playerBehaviour : CountTime
         Tempo(startTime);
         Movimentacao();
         Limite();
+        
+
+        pontuacao.color = new Color(pontuacao.color.r, pontuacao.color.g, pontuacao.color.b, opacidadee);
+        if (actualTime >= 6f)
+        {
+            print(actualTime);
+            if (opacidadee <= 1)
+            {
+                pontuacao.color = new Color(pontuacao.color.r, pontuacao.color.g, pontuacao.color.b, opacidadee);
+                opacidadee += 0.001f;
+            }
+        }
+        
         if ( actualTime > animationF)
         {
             GetComponent<Animator>().SetBool("Comendo", false);

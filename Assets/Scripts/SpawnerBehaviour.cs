@@ -61,7 +61,7 @@ public class SpawnerBehaviour : CountTime
     }
     void PrediosSpawn()
     {
-        Instantiate(predios, new Vector2(80, 3.5f), Quaternion.identity);
+     //   Instantiate(predios, new Vector2(80, 3.5f), Quaternion.identity);
     }
     void BigFishSpawn ()
     {
