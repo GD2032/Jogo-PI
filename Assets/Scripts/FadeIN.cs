@@ -12,7 +12,7 @@ public class FadeIN : CountTime
     void Update()
     {
         Tempo(startTime);
-        if (actualTime >= 11.5f && gameObject.tag == "AberturaCena")
+        if (actualTime >= 9f && gameObject.tag == "AberturaCena")
         {
             Destroy(this.gameObject);
         }

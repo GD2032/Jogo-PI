@@ -36,6 +36,10 @@ public class playerBehaviour : CountTime
     private GameObject boca;
     private float movimentoEixoX;
     private float movimentoEixoY;
+    private float contador = 0;
+    private float pontuacaoFood;
+    private bool Qte;
+    private bool pontuacaoEnable;
 
     void Start()
     {
@@ -53,22 +57,27 @@ public class playerBehaviour : CountTime
 
     void Update()
     {
-        Tempo(startTime);
+        actualTime = Tempo(startTime);
         Movimentacao();
         Limite();
-        
-
         pontuacao.color = new Color(pontuacao.color.r, pontuacao.color.g, pontuacao.color.b, opacidadee);
         if (actualTime >= 6f)
         {
-            print(actualTime);
             if (opacidadee <= 1)
             {
                 pontuacao.color = new Color(pontuacao.color.r, pontuacao.color.g, pontuacao.color.b, opacidadee);
-                opacidadee += 0.001f;
-            }
+                opacidadee += 0.01f;
+            } 
+            if (opacidadee >= 0.1 && contador < 1)
+            {
+                 startTime = Time.time;
+                 actualTime = Tempo(startTime);
+                 Count = Mathf.Round(actualTime);
+                 pontuacao.text = Count.ToString();
+                 contador++;
+            }    
         }
-        
+       
         if ( actualTime > animationF)
         {
             GetComponent<Animator>().SetBool("Comendo", false);
@@ -76,9 +85,40 @@ public class playerBehaviour : CountTime
             animationF = 0;
             animationProx = 0;
         }
-        Count = Mathf.Round(actualTime);
-        
-        pontuacao.text = Count.ToString();
+        if (pontuacaoEnable)
+        {
+             Count = Mathf.Round(actualTime) + pontuacaoFood;
+             pontuacao.text = Count.ToString();
+        }
+       
+        if (Qte)
+        {
+            //Instantiate
+            if (leftArrow)
+            {
+                if (Input.GetKeyDown(KeyCode.leftArrow))
+                {
+                    //opacidade
+                    //coutQte++
+                    rightArrow = true;
+                    leftArrow = false;
+                }
+            } 
+            if (rightArrow)
+            {
+                if (Input.GetKeyDown(KeyCode.rightArrow))
+                {
+                    //opacidade
+                    //CountQte++
+                    leftArrow = true;
+                    rightArrow = false;
+                }
+            }
+            if (countQte >= 10)
+            {
+                Qte = false;
+            }
+        }
     }
 
     void Movimentacao()
@@ -145,7 +185,12 @@ public class playerBehaviour : CountTime
         }
         if (colapse.tag == "Obstaculo")
         {
+            pontuacaoFood += 10;
     // caso venha a necessitar de alguma ação referida a colisão com agua vivas
+        }
+        if (colapse.tag == "SacolaQte")
+        {
+            quickTimeEvent();
         }
     }
     public void animationEat()
@@ -161,6 +206,8 @@ public class playerBehaviour : CountTime
         movimento = false;
         camera.GetComponent<CameraBehaviour>().SetSpeed(0);
         camera.GetComponent<CameraBehaviour>().SetZoomQte(true);
+        Qte = true;
+        pontuacaoEnable = false;
         
         
     }
