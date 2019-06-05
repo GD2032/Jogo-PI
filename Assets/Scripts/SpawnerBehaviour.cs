@@ -24,6 +24,8 @@ public class SpawnerBehaviour : CountTime
     private GameObject[] Conchas;
     [SerializeField]
     private GameObject predios;
+    [SerializeField]
+    private GameObject aguasVivas;
     void Start()
     {
       	InvokeRepeating("BigFishSpawn", 4f, 5f);
@@ -31,7 +33,7 @@ public class SpawnerBehaviour : CountTime
       	InvokeRepeating("SeaSpawn", 0f , 1.5f);
         InvokeRepeating("PrediosSpawn", 0f, 1.5f);
 	    InvokeRepeating("SpawnObstaculos", 8f, 1.5f);
-      	InvokeRepeating("SpawnObstaculos", 10f, 1.5f);
+      	InvokeRepeating("AguaVivaSpawn", 10f, 1.5f);
       	InvokeRepeating("SpawnObstaculos", 12f, 1.5f);
       	InvokeRepeating("CoraisSpawn", 0f, 0.5f);
       	InvokeRepeating("CoralVerdeSpawn", 1.25f, 2.5f);
@@ -45,7 +47,7 @@ public class SpawnerBehaviour : CountTime
 
     void SpawnObstaculos()
     {
-        sorteio = Random.Range(0, 4);
+        sorteio = Random.Range(0, 3);
         Vector2 position = new Vector2(14, Random.Range(2, -6.89f));
         Instantiate(lixos[sorteio], position, Quaternion.identity);
     }
@@ -92,5 +94,10 @@ public class SpawnerBehaviour : CountTime
     {
 	    Vector2 position = new Vector2(14,Random.Range(2, -6.89f));
 	    Instantiate(sacolaQte,position,Quaternion.identity); 
+    }
+    void AguaVivaSpawn()
+    {
+        Vector2 position = new Vector2(14, Random.Range(2, -6.89f));
+        Instantiate(aguasVivas, position, Quaternion.identity);
     }
 }

@@ -816,6 +816,8 @@ MonoBehaviour:
   - {fileID: 2567533413265527911, guid: 5dc04e2144d47a74483a3bacd0fc3f43, type: 3}
   - {fileID: 9018698415738885754, guid: 94532012ad66e624d85cab79351ea17f, type: 3}
   predios: {fileID: 1814382815613465936, guid: d51e106dadbb09548913931cc5e96643, type: 3}
+  aguasVivas: {fileID: 6500766832212073348, guid: 840757ba7eda4874e89639dcc0113f06,
+    type: 3}
 --- !u!212 &873874947
 SpriteRenderer:
   m_ObjectHideFlags: 0
