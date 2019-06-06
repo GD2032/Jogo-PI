@@ -88,6 +88,7 @@ public class playerBehaviour : CountTime
                  Count = Mathf.Round(actualTime);
                  pontuacao.text = Count.ToString();
                  contador++;
+                   
             }    
         }
        
@@ -200,7 +201,8 @@ public class playerBehaviour : CountTime
                     if (Vidas[2] == 0)
                     {
                         Instantiate(fundoPreto);
-                        StartCoroutine(contagemFadeOut());    
+                        StartCoroutine(contagemFadeOut());
+                             
                     }
                     break;
                 }
@@ -237,8 +239,11 @@ public class playerBehaviour : CountTime
         yield return new WaitForSeconds(0.6f);
         Destroy(this.fundoPreto);
         Instantiate(this.fundoPreto2);
-        Destroy(this.gameObject);
-        StartCoroutine(TeladeGameOver());
+        // Destroy(this.gameObject);
+         transform.position = new Vector3 (-9,0,0);
+        
+        StartCoroutine(TeladeGameOver());  
+     
 
     }
     public void InstantiateArrows()
@@ -250,5 +255,8 @@ public class playerBehaviour : CountTime
     {
         gameOver.SetActive(true);
         yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.6f);
+        gameOver.SetActive(true);   
+        Time.timeScale = 0f; 
     }
 }
