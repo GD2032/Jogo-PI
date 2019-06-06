@@ -26,7 +26,6 @@ public class playerBehaviour : CountTime
     private float speed;
     public float opacidadee;
     private static bool movimento;
-    private bool playerAlive;
     private static float posicaoPersonagem;
 
     private float xmax = 9.43f;
@@ -39,8 +38,11 @@ public class playerBehaviour : CountTime
     private float contador = 0;
     private float pontuacaoFood;
     private bool Qte;
-    private bool pontuacaoEnable;
-
+    private bool pontuacaoEnable = true;
+    [SerializeField]
+    private Image imgArrow;
+    [SerializeField]
+    private Canvas canvas;
     void Start()
     {
         startTime = Time.time;
@@ -66,7 +68,7 @@ public class playerBehaviour : CountTime
             if (opacidadee <= 1)
             {
                 pontuacao.color = new Color(pontuacao.color.r, pontuacao.color.g, pontuacao.color.b, opacidadee);
-                opacidadee += 0.01f;
+                opacidadee += 0.1f;
             } 
             if (opacidadee >= 0.1 && contador < 1)
             {
@@ -90,33 +92,34 @@ public class playerBehaviour : CountTime
              Count = Mathf.Round(actualTime) + pontuacaoFood;
              pontuacao.text = Count.ToString();
         }
-       
         if (Qte)
         {
-            //Instantiate
+
+            //Instantiate t
             if (leftArrow)
             {
-                if (Input.GetKeyDown(KeyCode.leftArrow))
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    //opacidade
-                    //coutQte++
+                    //opacidade da tecla 
+                    contadorQte++;
                     rightArrow = true;
                     leftArrow = false;
                 }
             } 
             if (rightArrow)
             {
-                if (Input.GetKeyDown(KeyCode.rightArrow))
+                if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    //opacidade
-                    //CountQte++
+                    //opacidade da tecla
+                    contadorQte++;
                     leftArrow = true;
                     rightArrow = false;
                 }
             }
-            if (countQte >= 10)
+            if (contadorQte >= 10)
             {
                 Qte = false;
+                pontuacaoEnable = true;
             }
         }
     }
@@ -173,12 +176,7 @@ public class playerBehaviour : CountTime
                     {
                         Instantiate(fundoPreto);
                         StartCoroutine(contagemFadeOut());    
-                        playerAlive = false;
                     }
-                    /*else if(contadorQte == 2)
-                    {
-                        quickTimeEvent();
-                    }*/
                     break;
                 }
             }
@@ -186,7 +184,6 @@ public class playerBehaviour : CountTime
         if (colapse.tag == "Obstaculo")
         {
             pontuacaoFood += 10;
-    // caso venha a necessitar de alguma ação referida a colisão com agua vivas
         }
         if (colapse.tag == "SacolaQte")
         {
@@ -200,7 +197,6 @@ public class playerBehaviour : CountTime
         animationProx = actualTime;
         animationF = animationProx + 0.5f;
     }
-    public bool PlayerAlive{ get; set;}
     public void quickTimeEvent()
     {
         movimento = false;
@@ -219,5 +215,8 @@ public class playerBehaviour : CountTime
         Destroy(this.gameObject);
 
     }
-
+    public void InstantiateArrows()
+    {
+        Instantiate(imgArrow, canvas.transform, true);
+    }
 }

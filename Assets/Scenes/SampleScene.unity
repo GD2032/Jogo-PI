@@ -1072,6 +1072,8 @@ MonoBehaviour:
   fundoPreto2: {fileID: 7189292230575275476, guid: 0966a7b6737c54b48b266c834bab3a5e,
     type: 3}
   opacidadee: 0
+  imgArrow: {fileID: 0}
+  canvas: {fileID: 930356585}
 --- !u!212 &1022179424
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1272,7 +1274,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 'aaaa
+
+'
 --- !u!222 &1137509474
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class CameraBehaviour : CountTime
     // public float minRange = 1.9f;
     //public float target;
 
-    private float força;
+    private float force;
     private float speedZoom;
     private bool enterZoom;
     private Vector3 target;
@@ -26,9 +26,11 @@ public class CameraBehaviour : CountTime
     private float eixoY;
     private bool zoomQte;
     private float percentageSpeed;
+    private bool percentageSpeedEnabled;
     private bool startScene;
     void Start()
     {
+        startTime = Time.time;
         percentageSpeed = 1;
         enterZoom = true;
         camera = GetComponentInChildren<Camera>();
@@ -38,12 +40,10 @@ public class CameraBehaviour : CountTime
     }
     void Update()
     {
-        Tempo(startTime);
-        //if (personagem.GetComponent<PlayerBehaviour>().PlayerAlive )
-        //
+        actualTime = Tempo(startTime);
         if (startScene && actualTime > 3.8f)
         {
-            Zoom(0.2f, 5f,false, false);
+            Zoom(2f, 5f,false, false);
             if (camera.orthographicSize >= 5)
             {
                 startScene = false;
@@ -54,11 +54,10 @@ public class CameraBehaviour : CountTime
         Limite();
         if (zoomQte)
         {
-            Zoom(0.5f, 2.5f, speed: 4f);
+            Zoom(2f, 2.5f, speed: 4f);
         }
-        //}
-        // Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, playerBehaviour.posicaoPersonagem, smoothSpeed * Time.deltaTime);
     }
+
     void Limite()
     {
         if (transform.position.y > ymax)
@@ -98,24 +97,25 @@ public class CameraBehaviour : CountTime
         { 
             if (zoomInside ? camera.orthographicSize >= limite : camera.orthographicSize <= limite)
             {
-                força = speedZoom * percentageSpeed;
+                force = speedZoom * percentageSpeed;
                 if (zoomInside)
                 {
-                     camera.orthographicSize -= Time.deltaTime * força;
+                     camera.orthographicSize -= Time.deltaTime * force;
                 }
                 else
                 {
-                     camera.orthographicSize += Time.deltaTime * força;
+                     camera.orthographicSize += Time.deltaTime * force;
                 }
-                percentageSpeed += 0.1f;
+                percentageSpeed -= 0.1f * Time.deltaTime;
             }
             else
             {
                 enterZoom = false;
+                percentageSpeed = 1;
             }
             if (percentageSpeed <= 0)
             {
-                percentageSpeed = 0.1f;
+                percentageSpeed = 0.1f * Time.deltaTime;
             }
         }
     }
