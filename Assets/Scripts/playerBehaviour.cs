@@ -43,6 +43,8 @@ public class playerBehaviour : CountTime
     private Image imgArrow;
     [SerializeField]
     private Canvas canvas;
+     [SerializeField]
+    private GameObject gameOver;
     void Start()
     {
         startTime = Time.time;
@@ -213,10 +215,15 @@ public class playerBehaviour : CountTime
         Destroy(this.fundoPreto);
         Instantiate(this.fundoPreto2);
         Destroy(this.gameObject);
+        StartCoroutine(TeladeGameOver());
 
     }
     public void InstantiateArrows()
     {
         Instantiate(imgArrow, canvas.transform, true);
+    }
+     IEnumerator TeladeGameOver()
+    {gameOver.SetActive(true);
+    yield return new WaitForSeconds(0.6f);
     }
 }
