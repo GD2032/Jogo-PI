@@ -14,7 +14,7 @@ public class lixos : CountTime
     
     void Start()
     {
-        Destroy(this.gameObject, 4);
+        Destroy(this.gameObject, 6);
     }
 
     void Update()

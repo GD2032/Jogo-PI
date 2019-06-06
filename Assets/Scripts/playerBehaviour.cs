@@ -18,16 +18,16 @@ public class playerBehaviour : CountTime
     private GameObject fundoPreto2;
     private GameObject[] Coracao = new GameObject[3];
     private float contadorQte;
-    private bool leftArrow;
-    private bool rightArrow;
+    private bool leftArrowEnabled;
+    private bool rightArrowEnabled;
 
     private float animationF;
     private float animationProx;
     private float speed;
-    public float opacidadee;
+    private float opacidadeP;
+    public float opacidadeRA;
+    public float opacidadeLA;
     private static bool movimento;
-    private static float posicaoPersonagem;
-
     private float xmax = 9.43f;
     private float ymax = 9.04f;
     private float ymin;
@@ -40,23 +40,32 @@ public class playerBehaviour : CountTime
     private bool Qte;
     private bool pontuacaoEnable = true;
     [SerializeField]
-    private Image imgArrow;
+    private Image leftArrow;
+    [SerializeField]
+    private Image rightArrow;
     [SerializeField]
     private Canvas canvas;
      [SerializeField]
     private GameObject gameOver;
+    private bool instantiateQte = true;
+
     void Start()
     {
         startTime = Time.time;
         camera = GameObject.FindWithTag("MainCamera");
-        speed = 8; 
-        opacidadee = 0;
+        speed = 8;
+        leftArrowEnabled = true; 
+        opacidadeP = 0;
+        opacidadeRA = 0;
+        opacidadeLA = 0;
         movimento = true;
         sacola = GameObject.FindWithTag("Sacola");
         aguaViva = GameObject.FindWithTag("Obstaculo");
         Coracao[0] = GameObject.FindWithTag("C1");
         Coracao[1] = GameObject.FindWithTag("C2");
         Coracao[2] = GameObject.FindWithTag("C3");
+        leftArrow.color = new Color(leftArrow.color.r, leftArrow.color.g, leftArrow.color.b, opacidadeLA);
+        rightArrow.color = new Color(rightArrow.color.r, rightArrow.color.g, rightArrow.color.b, opacidadeRA);
     }
 
     void Update()
@@ -64,15 +73,15 @@ public class playerBehaviour : CountTime
         actualTime = Tempo(startTime);
         Movimentacao();
         Limite();
-        pontuacao.color = new Color(pontuacao.color.r, pontuacao.color.g, pontuacao.color.b, opacidadee);
+        pontuacao.color = new Color(pontuacao.color.r, pontuacao.color.g, pontuacao.color.b, opacidadeP);
         if (actualTime >= 6f)
         {
-            if (opacidadee <= 1)
+            if (opacidadeP <= 1)
             {
-                pontuacao.color = new Color(pontuacao.color.r, pontuacao.color.g, pontuacao.color.b, opacidadee);
-                opacidadee += 0.1f;
+                pontuacao.color = new Color(pontuacao.color.r, pontuacao.color.g, pontuacao.color.b, opacidadeP);
+                opacidadeP += 0.1f;
             } 
-            if (opacidadee >= 0.1 && contador < 1)
+            if (opacidadeP >= 0.1 && contador < 1)
             {
                  startTime = Time.time;
                  actualTime = Tempo(startTime);
@@ -96,33 +105,47 @@ public class playerBehaviour : CountTime
         }
         if (Qte)
         {
-
-            //Instantiate t
-            if (leftArrow)
+            if (instantiateQte)
+            {
+                InstantiateArrows();
+                leftArrow.color = new Color(leftArrow.color.r, leftArrow.color.g, leftArrow.color.b, opacidadeLA);
+                rightArrow.color = new Color(rightArrow.color.r, rightArrow.color.g, rightArrow.color.b, opacidadeRA);
+                //instanciar tempo *-*
+            }
+            else
+            {
+                bool instantiateQte = false;
+            }
+            if (leftArrowEnabled)
             {
                 if (Input.GetKeyDown(KeyCode.LeftArrow))
                 {
-                    //opacidade da tecla 
+                    opacidadeLA = 0.5f;
+                    opacidadeRA = 1.0f;
                     contadorQte++;
-                    rightArrow = true;
-                    leftArrow = false;
+                    print("samuel é gay");
+                    rightArrowEnabled = true;
+                    leftArrowEnabled = false;
                 }
             } 
-            if (rightArrow)
+            if (rightArrowEnabled)
             {
                 if (Input.GetKeyDown(KeyCode.RightArrow))
                 {
-                    //opacidade da tecla
+                    opacidadeRA = 0.5f;
+                    opacidadeLA = 1.0f;
                     contadorQte++;
-                    leftArrow = true;
-                    rightArrow = false;
+                    leftArrowEnabled = true;
+                    rightArrowEnabled = false;
                 }
             }
-            if (contadorQte >= 10)
+            if (contadorQte >= 20)
             {
                 Qte = false;
                 pontuacaoEnable = true;
             }
+            leftArrow.color = new Color(leftArrow.color.r, leftArrow.color.g, leftArrow.color.b, opacidadeLA);
+            rightArrow.color = new Color(rightArrow.color.r, rightArrow.color.g, rightArrow.color.b, opacidadeRA);
         }
     }
 
@@ -220,10 +243,12 @@ public class playerBehaviour : CountTime
     }
     public void InstantiateArrows()
     {
-        Instantiate(imgArrow, canvas.transform, true);
+        leftArrow.color = new Color(leftArrow.color.r, leftArrow.color.g, leftArrow.color.b, 1);
+        rightArrow.color = new Color(rightArrow.color.r, rightArrow.color.g, rightArrow.color.b, 0.5f);
     }
      IEnumerator TeladeGameOver()
-    {gameOver.SetActive(true);
-    yield return new WaitForSeconds(0.6f);
+    {
+        gameOver.SetActive(true);
+        yield return new WaitForSeconds(0.6f);
     }
 }

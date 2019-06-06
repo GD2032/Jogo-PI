@@ -38,7 +38,7 @@ public class SpawnerBehaviour : CountTime
       	InvokeRepeating("CoraisSpawn", 0f, 0.5f);
       	InvokeRepeating("CoralVerdeSpawn", 1.25f, 2.5f);
       	InvokeRepeating("ConchaSpawn", 1.4f, 2.5f);
-	    InvokeRepeating("QteSacolaSpawn", 60f, 10f); 
+	    InvokeRepeating("QteSacolaSpawn", 0f, 10f); 
     }
 
     void Update()
